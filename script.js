@@ -16,23 +16,26 @@ const SCHEDULE = [
 const MENU = [
   {
     id: "especialidad", tab: "Especialidad", title: "El Patio Specialty", sub: "Rice & beans included",
+    intro: "Our signature plates arrive on hand-painted clay platos: three rolled enchiladas blanketed in sauce made from scratch, finished with a crema drizzle, melted cheese, red onion and fresh cilantro. Every plate comes with a dome of red Mexican rice and refried beans served in a crispy tortilla bowl topped with queso fresco.",
     layout: "list",
     items: [
-      { id: "suizas", num: "#1", name: "Enchiladas Suizas", price: 17, desc: "3 chicken enchiladas rolled in sprouted corn tortillas, creamy mild tomatillo sauce, mozzarella cheese, sour cream drizzle, red onion, cilantro", tag: "House favorite" },
-      { id: "chipotle", num: "#2", name: "Chipotle Enchiladas", price: 17, desc: "3 chicken enchiladas rolled in sprouted corn tortillas, creamy chipotle sauce, mozzarella cheese, sour cream drizzle, red onion, cilantro" },
-      { id: "verdes", num: "#3", name: "Enchiladas Verdes", price: 16, desc: "3 chicken enchiladas rolled in sprouted corn tortillas, green tomatillo sauce, queso fresco, sour cream, white onion, cilantro" },
+      { id: "suizas", num: "#1", name: "Enchiladas Suizas", price: 17, img: "assets/img/gallery/enchiladas-suizas.jpg", desc: "3 chicken enchiladas rolled in sprouted corn tortillas and smothered in our creamy, mild tomatillo sauce, topped with melted mozzarella, a sour cream drizzle, red onion and cilantro", tag: "House favorite" },
+      { id: "chipotle", num: "#2", name: "Chipotle Enchiladas", price: 17, img: "assets/img/enchiladas.jpg", desc: "3 chicken enchiladas rolled in sprouted corn tortillas in a smoky, creamy chipotle sauce, topped with mozzarella, a sour cream drizzle, red onion and cilantro" },
+      { id: "verdes", num: "#3", name: "Enchiladas Verdes", price: 16, desc: "3 chicken enchiladas rolled in sprouted corn tortillas, bright green tomatillo salsa, queso fresco, sour cream, white onion and cilantro" },
     ],
   },
   {
     id: "dorados", tab: "Dorados", title: "Dorados", sub: "Golden & crispy — rice & beans included",
+    intro: "Fried to order until shatteringly crisp, then piled high with cool, crunchy toppings: shredded lettuce, sour cream and bright pink pickled red onion. Served on the plato with red rice and refried beans in a golden tortilla bowl.",
     layout: "list",
     items: [
-      { id: "quesadillas", num: "#4", name: "Quesadillas Locas", price: 15, desc: "3 deep fried chicken quesadillas on sprouted corn tortillas, mozzarella, queso fresco, pico de gallo, lettuce, purple onion, creamy house chipotle sauce, sour cream" },
-      { id: "tacos", num: "#5", name: "Tacos Dorados", price: 14, desc: "3 fried tacos in sprouted corn tortillas, lettuce, queso fresco, sour cream", options: ["Chicken", "Potato"] },
+      { id: "quesadillas", num: "#4", name: "Quesadillas Locas", price: 15, desc: "3 deep-fried chicken quesadillas on sprouted corn tortillas, mozzarella, queso fresco, pico de gallo, lettuce, purple onion, creamy house chipotle sauce and sour cream" },
+      { id: "tacos", num: "#5", name: "Tacos Dorados", price: 14, img: "assets/img/gallery/tacos-dorados.jpg", desc: "3 crispy golden tacos in sprouted corn tortillas, loaded with shredded lettuce, sour cream, queso fresco and tangy pickled red onion", options: ["Chicken", "Potato"], tag: "Crowd pleaser" },
     ],
   },
   {
     id: "fries", tab: "Fries", title: "Fries", sub: "Seasoned curly fries, loaded",
+    intro: "Seasoned curly fries buried under beer cheese and three kinds of queso — made for sharing at the patio tables, or not.",
     layout: "list",
     items: [
       { id: "cheesefries", name: "Cheese Fries", price: 14, desc: "Seasoned curly fries, beer cheese, mozzarella, queso fresco, fresh chives garnish" },
@@ -41,23 +44,26 @@ const MENU = [
   },
   {
     id: "bebidas", tab: "Bebidas", title: "Bebidas", sub: "Aguas frescas made in-house",
+    intro: "Poured over ice at the window. Our agua de Jamaica is steeped from real dried hibiscus flowers — the same ones you'll see in the jars on our counter — and the horchata is creamy, cinnamon-kissed and ice cold.",
     layout: "cards",
     items: [
-      { id: "jamaica", name: "Agua de Jamaica", desc: "Chilled hibiscus, lightly sweet", img: "assets/img/jamaica.jpg" },
-      { id: "horchata", name: "Horchata", desc: "Rice, cinnamon & vanilla", img: "assets/img/horchata.jpg" },
+      { id: "jamaica", name: "Agua de Jamaica", desc: "Real hibiscus flowers steeped and chilled — tart, ruby red and lightly sweet", img: "assets/img/jamaica.jpg" },
+      { id: "horchata", name: "Horchata", desc: "Creamy rice, cinnamon & vanilla over ice", img: "assets/img/horchata.jpg" },
       { id: "sodas", name: "Mexican Sodas & Water", desc: "Coca-Cola, Fanta, Sprite, Tahoe artesian water", img: "assets/img/sodas.jpg" },
     ],
   },
   {
     id: "postres", tab: "Postres", title: "Postres", sub: "Save room for something sweet",
+    intro: "Something sweet for the walk back to the car: fresh strawberries layered with cream and chocolate, and churros fried golden, rolled in cinnamon sugar and drizzled warm.",
     layout: "cards",
     items: [
-      { id: "fresas", name: "El Patio Fresas", price: 8, desc: "Strawberries, chocolate, mazapán crumbs", img: "assets/img/fresas.jpg" },
-      { id: "churros", name: "4 Mini Loop Churros", desc: "Dulce de leche or chocolate drizzle", img: "assets/img/churros.jpg" },
+      { id: "fresas", name: "El Patio Fresas", price: 8, desc: "Fresh-cut strawberries layered with sweet cream and chocolate, topped with mazapán crumbs", img: "assets/img/fresas.jpg" },
+      { id: "churros", name: "Churros", desc: "Fried golden, rolled in cinnamon sugar and finished with a dulce de leche and chocolate drizzle", img: "assets/img/gallery/churros-twist.jpg" },
     ],
   },
   {
     id: "paletas", tab: "Paletas", title: "Artisan Dipped Paletas", sub: "Made fresh & local by Paletería La Paz — ask about weekly flavors",
+    intro: "Handmade ice pops from our friends at Paletería La Paz, dipped in chocolate and drizzled to order.",
     layout: "cards",
     items: [
       { id: "p-mazapan", name: "Mazapán", price: 6, desc: "Chocolate dipped & drizzled", img: "assets/img/paleta-mazapan.jpg" },
@@ -67,6 +73,29 @@ const MENU = [
     ],
   },
 ];
+
+/* ---- Gallery (photos + short clips) ---- */
+const GALLERY = [
+  { cat: "truck", type: "img", src: "assets/img/gallery/truck-night.jpg", alt: "El Patio food truck lit up at night with colored lights, cacti and the BAR sign", cap: "Lights on at RED", wide: true },
+  { cat: "food", type: "img", src: "assets/img/gallery/enchiladas-suizas.jpg", alt: "Enchiladas suizas in creamy tomatillo sauce with rice and beans on a clay plate", cap: "Enchiladas Suizas" },
+  { cat: "cantina", type: "video", src: "assets/video/cantina-crew.mp4", poster: "assets/video/cantina-crew.jpg", cap: "The cantina crew in action" },
+  { cat: "food", type: "img", src: "assets/img/gallery/tacos-dorados.jpg", alt: "Tacos dorados topped with pickled red onion and crema, with red rice and beans", cap: "Tacos Dorados" },
+  { cat: "truck", type: "img", src: "assets/img/gallery/truck-side.jpg", alt: "Side of the El Patio trailer with agave artwork beside the string-lit patio canopy", cap: "Under the string lights" },
+  { cat: "cantina", type: "img", src: "assets/img/gallery/cocktails-duo.jpg", alt: "Jamaica cocktail with dried hibiscus and a paloma with a dried grapefruit wheel", cap: "Jamaica & Paloma" },
+  { cat: "food", type: "video", src: "assets/video/fresas-cup.mp4", poster: "assets/video/fresas-cup.jpg", cap: "Fresas con crema" },
+  { cat: "crew", type: "img", src: "assets/img/gallery/crew.jpg", alt: "Three El Patio bartenders cheering behind the bar", cap: "The El Patio crew" },
+  { cat: "truck", type: "img", src: "assets/img/gallery/bar-window.jpg", alt: "Marquee BAR sign and mezcal and tequila bottles at the truck window", cap: "The bar window" },
+  { cat: "food", type: "img", src: "assets/img/gallery/churros-twist.jpg", alt: "Twisted cinnamon sugar churros with caramel and chocolate drizzle", cap: "Churros" },
+  { cat: "cantina", type: "video", src: "assets/video/cantina-rimmed.mp4", poster: "assets/video/cantina-rimmed.jpg", cap: "Rimmed & ready" },
+  { cat: "truck", type: "img", src: "assets/img/gallery/pickup-window.jpg", alt: "Pick-up window with plants, bottles and jars of dried garnishes", cap: "Pick-up here" },
+  { cat: "food", type: "video", src: "assets/video/tacos-plate.mp4", poster: "assets/video/tacos-plate.jpg", cap: "Fresh off the fryer" },
+  { cat: "cantina", type: "video", src: "assets/video/cantina-jamaica.mp4", poster: "assets/video/cantina-jamaica.jpg", cap: "Jamaica Mezcal" },
+  { cat: "food", type: "img", src: "assets/img/gallery/tacos-dorados-side.jpg", alt: "Tacos dorados plate on a yellow patio table at golden hour", cap: "Golden hour on the patio" },
+  { cat: "cantina", type: "img", src: "assets/img/gallery/bar-counter.jpg", alt: "Bar counter with tequila, mezcal, dried citrus and hibiscus jars", cap: "Dried citrus, hibiscus & agave" },
+  { cat: "truck", type: "video", src: "assets/video/bar-shelf.mp4", poster: "assets/video/bar-shelf.jpg", cap: "Behind the bar" },
+  { cat: "cantina", type: "video", src: "assets/video/cantina-cheers.mp4", poster: "assets/video/cantina-cheers.jpg", cap: "¡Salud!" },
+];
+const GALLERY_TABS = [["all", "All"], ["food", "Food"], ["cantina", "Cantina"], ["truck", "The Truck"], ["crew", "The Crew"]];
 
 const $ = (s, el = document) => el.querySelector(s);
 const $$ = (s, el = document) => [...el.querySelectorAll(s)];
@@ -122,10 +151,11 @@ function renderMenu() {
     const panel = document.createElement("div");
     panel.className = "menu__panel" + (i === 0 ? " active" : "");
     panel.id = "panel-" + cat.id;
-    let html = `<div class="menu__panel-head"><h3>${cat.title}</h3><p>${cat.sub}</p></div>`;
+    let html = `<div class="menu__panel-head"><h3>${cat.title}</h3><p>${cat.sub}</p>${cat.intro ? `<p class="menu__intro">${cat.intro}</p>` : ""}</div>`;
     if (cat.layout === "list") {
       html += `<div class="menu__grid">` + cat.items.map((it) => `
-        <article class="dish">
+        <article class="dish${it.img ? " dish--img" : ""}">
+          ${it.img ? `<div class="dish__img"><img src="${it.img}" alt="${it.name}" loading="lazy" /></div>` : ""}
           <div class="dish__body">
             <div class="dish__top">${it.num ? `<span class="dish__num">${it.num}</span>` : ""}<h4>${it.name}</h4><span class="dish__dots"></span><span class="dish__price">$${it.price}</span></div>
             <p>${it.desc}</p>
@@ -283,7 +313,26 @@ function setupReels() {
       if (en.isIntersecting) { v.preload = "auto"; v.play().catch(() => {}); } else v.pause();
     });
   }, { threshold: 0.35 });
-  $$(".reel video").forEach((v) => io.observe(v));
+  $$(".reel video, .shot video").forEach((v) => io.observe(v));
+}
+
+/* ---------- Gallery ---------- */
+function renderGallery() {
+  const tabs = $("#galleryTabs"), grid = $("#galleryGrid");
+  if (!tabs || !grid) return;
+  tabs.innerHTML = GALLERY_TABS.map(([k, l], i) => `<button class="menu__tab${i === 0 ? " active" : ""}" data-f="${k}" role="tab">${l}</button>`).join("");
+  grid.innerHTML = GALLERY.map((g) => `
+    <figure class="shot${g.wide ? " shot--wide" : ""}${g.type === "video" ? " shot--video" : ""}" data-cat="${g.cat}">
+      ${g.type === "video"
+        ? `<video muted loop playsinline preload="none" poster="${g.poster}" aria-label="${g.cap}"><source src="${g.src}" type="video/mp4" /></video>`
+        : `<img src="${g.src}" alt="${g.alt}" loading="lazy" />`}
+      <figcaption>${g.cap}</figcaption>
+    </figure>`).join("");
+  tabs.addEventListener("click", (e) => {
+    const b = e.target.closest("button"); if (!b) return;
+    $$("button", tabs).forEach((t) => t.classList.toggle("active", t === b));
+    $$(".shot", grid).forEach((el) => el.classList.toggle("hide", b.dataset.f !== "all" && el.dataset.cat !== b.dataset.f));
+  });
 }
 
 /* ---------- Toast ---------- */
@@ -310,6 +359,7 @@ document.addEventListener("DOMContentLoaded", () => {
   $("#year").textContent = new Date().getFullYear();
   $("#checkoutBtn").href = ORDER_URL;
   renderMenu();
+  renderGallery();
   renderCart();
   renderSchedule();
   allLights();
