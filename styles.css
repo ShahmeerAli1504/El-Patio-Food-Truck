@@ -471,3 +471,4 @@ button { font: inherit; color: inherit; cursor: pointer; }
   .dish .add { width: 38px; height: 38px; font-size: 19px; }
   .dish__rank { font-size: 10px; }
 }
+.nav__brand { cursor: pointer; transition: opacity .3s; } .nav__brand:hover { opacity: .85; }

@@ -426,6 +426,13 @@ document.addEventListener("DOMContentLoaded", () => {
   const burger = $("#burger"), links = $("#navLinks");
   burger.addEventListener("click", () => { burger.classList.toggle("open"); links.classList.toggle("open"); });
   $$("a", links).forEach((a) => a.addEventListener("click", () => { burger.classList.remove("open"); links.classList.remove("open"); }));
+  // Logo = back to the top of the page (smooth, works every click, keeps the URL clean)
+  $(".nav__brand").addEventListener("click", (e) => {
+    e.preventDefault();
+    burger.classList.remove("open"); links.classList.remove("open");
+    window.scrollTo({ top: 0, behavior: "smooth" });
+    if (location.hash) history.replaceState(null, "", location.pathname + location.search);
+  });
 
   let rt; window.addEventListener("resize", () => { clearTimeout(rt); rt = setTimeout(allLights, 150); });
 });
