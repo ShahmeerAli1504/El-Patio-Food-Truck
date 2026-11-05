@@ -17,13 +17,13 @@ const SCHEDULE = [
 /* ---- Menu ---- */
 const MENU = [
   {
-    id: "especialidad", tab: "Especialidad", title: "El Patio Specialty", sub: "Rice & beans included",
-    intro: "Our signature plates arrive on hand-painted clay platos: three rolled enchiladas blanketed in sauce made from scratch, finished with a crema drizzle, melted cheese, red onion and fresh cilantro. Every plate comes with a dome of red Mexican rice and refried beans served in a crispy tortilla bowl topped with queso fresco.",
+    id: "especialidad", tab: "Enchiladas", title: "Enchiladas", sub: "El Patio's specialty — house-made salsas, simple real ingredients",
+    intro: "Our signature plates arrive on hand-painted clay platos: three chicken enchiladas rolled in sprouted corn tortillas, blanketed in salsa made from scratch and finished with a crema drizzle, cheese, onion and fresh cilantro. Every plate comes with a dome of red Mexican rice and refried beans served in a crispy tortilla bowl topped with queso fresco.",
     layout: "list",
     items: [
-      { id: "suizas", num: "#1", name: "Enchiladas Suizas", price: 17, img: "assets/img/gallery/enchiladas-suizas.jpg", desc: "3 chicken enchiladas rolled in sprouted corn tortillas and smothered in our creamy, mild tomatillo sauce, topped with melted mozzarella, a sour cream drizzle, red onion and cilantro", tag: "House favorite" },
-      { id: "chipotle", num: "#2", name: "Chipotle Enchiladas", price: 17, img: "assets/img/enchiladas.jpg", desc: "3 chicken enchiladas rolled in sprouted corn tortillas in a smoky, creamy chipotle sauce, topped with mozzarella, a sour cream drizzle, red onion and cilantro" },
-      { id: "verdes", num: "#3", name: "Enchiladas Verdes", price: 16, desc: "3 chicken enchiladas rolled in sprouted corn tortillas, bright green tomatillo salsa, queso fresco, sour cream, white onion and cilantro" },
+      { id: "suizas", rank: 1, name: "Enchiladas Suizas", price: 17.99, img: "assets/img/gallery/enchiladas-suizas.jpg", desc: "Three chicken enchiladas smothered in our creamy, mild tomatillo sauce, topped with melted mozzarella, a sour cream drizzle, red onion and cilantro" },
+      { id: "chipotle", rank: 2, name: "Chipotles", price: 17.99, img: "assets/img/enchiladas.jpg", desc: "Three chicken enchiladas in sprouted corn tortillas, covered in a smoky, creamy chipotle sauce, topped with mozzarella, a sour cream drizzle, red onion and cilantro" },
+      { id: "verdes", name: "Verdes", price: 16.99, img: "assets/img/menu/verdes.jpg", desc: "Three chicken enchiladas rolled in sprouted corn tortillas, topped with bright green tomatillo salsa, queso fresco, sour cream and cilantro" },
     ],
   },
   {
@@ -31,27 +31,33 @@ const MENU = [
     intro: "Fried to order until shatteringly crisp, then piled high with cool, crunchy toppings: shredded lettuce, sour cream and bright pink pickled red onion. Served on the plato with red rice and refried beans in a golden tortilla bowl.",
     layout: "list",
     items: [
-      { id: "quesadillas", num: "#4", name: "Quesadillas Locas", price: 15, desc: "3 deep-fried chicken quesadillas on sprouted corn tortillas, mozzarella, queso fresco, pico de gallo, lettuce, purple onion, creamy house chipotle sauce and sour cream" },
-      { id: "tacos", num: "#5", name: "Tacos Dorados", price: 14, img: "assets/img/gallery/tacos-dorados.jpg", desc: "3 crispy golden tacos in sprouted corn tortillas, loaded with shredded lettuce, sour cream, queso fresco and tangy pickled red onion", options: ["Chicken", "Potato"], tag: "Crowd pleaser" },
+      { id: "quesadillas", name: "Quesadillas Locas", price: 15, desc: "3 deep-fried chicken quesadillas on sprouted corn tortillas, mozzarella, queso fresco, pico de gallo, lettuce, purple onion, creamy house chipotle sauce and sour cream" },
+      { id: "tacos", name: "Tacos Dorados", price: 14, img: "assets/img/gallery/tacos-dorados.jpg", desc: "3 crispy golden tacos in sprouted corn tortillas, loaded with shredded lettuce, sour cream, queso fresco and tangy pickled red onion", options: ["Chicken", "Potato"], tag: "Crowd pleaser" },
     ],
   },
   {
-    id: "fries", tab: "Fries", title: "Fries", sub: "Seasoned curly fries, loaded",
-    intro: "Seasoned curly fries buried under beer cheese and three kinds of queso — made for sharing at the patio tables, or not.",
+    id: "fries", tab: "Fries", title: "Fries", sub: "El Patio's signature curly fries, loaded your way",
+    intro: "Seasoned curly fries buried under melted queso, mozzarella and queso fresco — made for sharing at the patio tables, or not.",
     layout: "list",
     items: [
-      { id: "cheesefries", name: "Cheese Fries", price: 14, desc: "Seasoned curly fries, beer cheese, mozzarella, queso fresco, fresh chives garnish" },
-      { id: "baconfries", name: "Cheesy Bacon Curly Fries", price: 16, desc: "Seasoned curly fries, beer cheese, mozzarella, queso fresco, bacon, pico de gallo, sour cream, avocado", tag: "Fan favorite" },
+      { id: "baconfries", rank: 3, name: "Cheesy Bacon Fries", price: 16.99, img: "assets/img/menu/cheesy-bacon-fries.jpg", desc: "Crispy curly fries, melted queso, mozzarella, queso fresco and crispy bacon, finished with a sour cream drizzle and fresh chives" },
+      { id: "cheesefries", name: "Cheese Fries", price: 14.99, img: "assets/img/menu/cheese-fries.jpg", desc: "Crispy curly fries, melted queso, mozzarella and queso fresco, topped with a sour cream drizzle and fresh chives" },
     ],
   },
   {
-    id: "bebidas", tab: "Bebidas", title: "Bebidas", sub: "Aguas frescas made in-house",
-    intro: "Poured over ice at the window. Our agua de Jamaica is steeped from real dried hibiscus flowers — the same ones you'll see in the jars on our counter — and the horchata is creamy, cinnamon-kissed and ice cold.",
+    id: "bebidas", tab: "Bebidas", title: "Bebidas", sub: "Aguas frescas made in-house, plus ice-cold bottles",
+    intro: "Poured over ice at the window. Our agua de Jamaica is steeped from real dried hibiscus flowers — the same ones you'll see in the jars on our counter — and the horchata is handmade, creamy and ice cold.",
     layout: "cards",
     items: [
-      { id: "jamaica", name: "Agua de Jamaica", desc: "Real hibiscus flowers steeped and chilled — tart, ruby red and lightly sweet", img: "assets/img/jamaica.jpg" },
-      { id: "horchata", name: "Horchata", desc: "Creamy rice, cinnamon & vanilla over ice", img: "assets/img/horchata.jpg" },
-      { id: "sodas", name: "Mexican Sodas & Water", desc: "Coca-Cola, Fanta, Sprite, Tahoe artesian water", img: "assets/img/sodas.jpg" },
+      { id: "horchata", name: "Horchata", price: 6, desc: "Handmade, creamy rice horchata with cinnamon over ice", img: "assets/img/horchata.jpg" },
+      { id: "jamaica", name: "Agua de Jamaica", price: 6, desc: "Handmade from real hibiscus flowers — tart, ruby red and lightly sweet", img: "assets/img/jamaica.jpg" },
+    ],
+    extrasTitle: "Bottled Drinks", extrasImg: "assets/img/sodas.jpg",
+    extras: [
+      { id: "coke", name: "Bottled Coke", price: 5 },
+      { id: "sprite", name: "Bottled Sprite", price: 5 },
+      { id: "fanta", name: "Bottled Orange Fanta", price: 5 },
+      { id: "tahoe", name: "Tahoe Water", price: 3 },
     ],
   },
   {
@@ -159,7 +165,8 @@ function renderMenu() {
         <article class="dish${it.img ? " dish--img" : ""}">
           ${it.img ? `<div class="dish__img"><img src="${it.img}" alt="${it.name}" loading="lazy" /></div>` : ""}
           <div class="dish__body">
-            <div class="dish__top">${it.num ? `<span class="dish__num">${it.num}</span>` : ""}<h4>${it.name}</h4><span class="dish__dots"></span><span class="dish__price">$${it.price}</span></div>
+            ${it.rank ? `<span class="dish__rank">#${it.rank} Best Seller</span>` : ""}
+            <div class="dish__top"><h4>${it.name}</h4><span class="dish__dots"></span><span class="dish__price">${money(it.price)}</span></div>
             <p>${it.desc}</p>
             ${it.options ? `<div class="dish__opts" data-for="${it.id}">${it.options.map((o, k) => `<button class="${k === 0 ? "on" : ""}" data-opt="${o}">${o}</button>`).join("")}</div>` : ""}
             ${it.tag ? `<span class="dish__tag">${it.tag}</span>` : ""}
@@ -172,16 +179,41 @@ function renderMenu() {
           <div class="card__img"><img src="${it.img}" alt="${it.name}" loading="lazy" /></div>
           <div class="card__body">
             <div><h4>${it.name}</h4><p>${it.desc}</p>
-              ${it.price ? `<span class="card__price">$${it.price}</span>` : `<span class="card__price ask">Price at the window</span>`}
+              ${it.price ? `<span class="card__price">${money(it.price)}</span>` : `<span class="card__price ask">Price at the window</span>`}
             </div>
             ${it.price ? `<button class="add" data-add="${it.id}" aria-label="Add ${it.name}">+</button>` : ""}
           </div>
         </article>`).join("") + `</div>`;
+      if (cat.extras) html += `
+        <div class="bottles">
+          <div class="bottles__img"><img src="${cat.extrasImg}" alt="${cat.extrasTitle}" loading="lazy" /></div>
+          <div class="bottles__list">
+            <h4>${cat.extrasTitle}</h4>
+            ${cat.extras.map((it) => `
+              <div class="bottle"><span class="bottle__name">${it.name}</span><span class="dish__dots"></span><span class="bottle__price">${money(it.price)}</span>
+                <button class="add add--sm" data-add="${it.id}" aria-label="Add ${it.name}">+</button></div>`).join("")}
+          </div>
+        </div>`;
       if (cat.id === "paletas") html += `<p class="menu__credit">✦ Made fresh &amp; local: Paletería La Paz ✦</p>`;
     }
     panel.innerHTML = html;
     panels.appendChild(panel);
   });
+
+  const best = $("#menuBest");
+  if (best) {
+    const picks = allItems().filter((i) => i.rank).sort((a, b) => a.rank - b.rank);
+    best.innerHTML = `<p class="best__label"><span class="star">✦</span> Best Sellers <span class="star">✦</span></p>
+      <div class="best__grid">` + picks.map((it) => `
+        <article class="best">
+          <div class="best__img"><img src="${it.img}" alt="${it.name}" loading="lazy" /><span class="best__rank">#${it.rank}</span></div>
+          <div class="best__body">
+            <div><h4>${it.name}</h4><span class="best__price">${money(it.price)}</span></div>
+            <button class="add" data-add="${it.id}" aria-label="Add ${it.name}">+</button>
+          </div>
+        </article>`).join("") + `</div>`;
+    best.addEventListener("click", onMenuClick);
+  }
 
   tabs.addEventListener("click", (e) => {
     const b = e.target.closest(".menu__tab"); if (!b) return;
@@ -190,7 +222,9 @@ function renderMenu() {
     b.scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
   });
 
-  panels.addEventListener("click", (e) => {
+  panels.addEventListener("click", onMenuClick);
+}
+function onMenuClick(e) {
     const opt = e.target.closest(".dish__opts button");
     if (opt) {
       const wrap = opt.parentElement;
@@ -206,13 +240,14 @@ function renderMenu() {
       add.classList.add("added"); add.textContent = "✓";
       setTimeout(() => { add.classList.remove("added"); add.textContent = "+"; }, 1100);
     }
-  });
 }
-const findItem = (id) => MENU.flatMap((c) => c.items).find((i) => i.id === id);
+const allItems = () => MENU.flatMap((c) => [...c.items, ...(c.extras || [])]);
+const findItem = (id) => allItems().find((i) => i.id === id);
 
 /* ---------- Cart ---------- */
 let cart = [];
 try { cart = JSON.parse(localStorage.getItem("elpatio-cart") || "[]"); } catch (_) { cart = []; }
+cart = cart.filter((l) => findItem(l.id)).map((l) => { const it = findItem(l.id); return { ...l, name: it.name, price: it.price }; });
 const save = () => { try { localStorage.setItem("elpatio-cart", JSON.stringify(cart)); } catch (_) {} };
 
 function addToCart(item, option) {

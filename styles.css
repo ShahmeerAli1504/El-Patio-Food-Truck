@@ -419,3 +419,55 @@ button { font: inherit; color: inherit; cursor: pointer; }
   .shot figcaption { font-size: 15px; padding: 36px 12px 10px; }
   .follow { grid-template-columns: 1fr; }
 }
+
+/* ---------- Best sellers showcase ---------- */
+.menu__best { margin: 0 auto 56px; }
+.best__label { text-align: center; margin: 0 0 22px; font-family: var(--caps); font-size: 13px; letter-spacing: .24em; text-transform: uppercase; color: var(--gold); }
+.best__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+.best { border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; background: var(--char); display: flex; flex-direction: column; transition: transform .4s var(--ease), border-color .4s, box-shadow .4s; }
+.best:hover { transform: translateY(-6px); border-color: rgba(234,178,90,.5); box-shadow: 0 26px 50px -24px rgba(0,0,0,.9); }
+.best__img { position: relative; aspect-ratio: 4 / 3; overflow: hidden; background: #000; }
+.best__img img { width: 100%; height: 100%; object-fit: cover; transition: transform .8s var(--ease); }
+.best:hover .best__img img { transform: scale(1.06); }
+.best__rank { position: absolute; top: 14px; left: 14px; width: 50px; height: 50px; border-radius: 50%; background: var(--terra); color: #fff3e2; display: grid; place-items: center; font-family: var(--serif); font-style: italic; font-weight: 700; font-size: 19px; border: 2px dashed rgba(255,243,226,.5); outline: 4px solid var(--terra); transform: rotate(-8deg); box-shadow: 0 10px 20px -8px rgba(0,0,0,.7); }
+.best__body { display: flex; align-items: flex-end; justify-content: space-between; gap: 12px; padding: 18px 20px 20px; border-top: 1px solid var(--line); }
+.best h4 { font-family: var(--serif); font-size: 22px; margin: 0; line-height: 1.2; }
+.best__price { display: block; margin-top: 4px; font-family: var(--serif); font-weight: 700; color: var(--gold); font-size: 19px; }
+
+/* ---------- Best-seller ribbon on dishes ---------- */
+.dish__rank { display: inline-block; margin-bottom: 8px; font-family: var(--caps); font-size: 11px; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: #fff3e2; background: var(--terra); border-radius: 999px; padding: 5px 11px 3px; }
+
+/* ---------- Bottled drinks list ---------- */
+.bottles { margin-top: 22px; display: grid; grid-template-columns: 220px 1fr; border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; background: var(--char); }
+.bottles__img { background: #000; }
+.bottles__img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.bottles__list { padding: 22px 26px 16px; }
+.bottles__list h4 { font-family: var(--serif); font-size: 22px; margin: 0 0 6px; }
+.bottle { display: flex; align-items: center; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--line); }
+.bottle:last-child { border-bottom: 0; }
+.bottle__name { font-size: 16px; }
+.bottle .dish__dots { transform: none; }
+.bottle__price { font-family: var(--serif); font-weight: 700; color: var(--gold); font-size: 17px; }
+.add--sm { width: 36px; height: 36px; font-size: 19px; align-self: center; }
+
+@media (max-width: 920px) {
+  .best__grid { grid-template-columns: repeat(3, minmax(240px, 1fr)); overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 8px; scrollbar-width: none; }
+  .best__grid::-webkit-scrollbar { display: none; }
+  .best { scroll-snap-align: start; }
+}
+@media (max-width: 600px) {
+  .best__grid { grid-template-columns: repeat(3, 78%); gap: 14px; }
+  .best h4 { font-size: 19px; }
+  .bottles { grid-template-columns: 1fr; }
+  .bottles__img { aspect-ratio: 16 / 9; }
+  .bottles__list { padding: 18px 18px 10px; }
+}
+@media (max-width: 600px) {
+  .dish { gap: 14px; }
+  .dish__top { flex-wrap: wrap; gap: 2px 10px; }
+  .dish__top h4 { width: 100%; }
+  .dish__top .dish__dots { display: none; }
+  .dish__price { font-size: 19px; }
+  .dish .add { width: 38px; height: 38px; font-size: 19px; }
+  .dish__rank { font-size: 10px; }
+}

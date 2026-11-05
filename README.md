@@ -7,7 +7,7 @@ Static HTML/CSS/JS — no build step. Deploy on Vercel as-is (Framework preset: 
 ## Quick edits (all in `script.js`)
 - `ORDER_URL` — the online-ordering checkout link (currently `https://www.elpatioreno.com/s/order`).
 - `SCHEDULE` — the weekly stops (date, start/end time, venue, address). Past dates hide automatically; the hero "next stop" pill updates itself.
-- `MENU` — every menu category & item. Items without a `price` show "Price at the window" and no add button.
+- `MENU` — every menu category & item (prices match DoorDash). Items without a `price` show "Price at the window" and no add button. Give an item `rank: 1/2/3` to show it in the **Best Sellers** strip with a "#N Best Seller" badge; a category's `extras` list renders as a compact price list (used for bottled drinks).
 
 ## Structure
 ```
