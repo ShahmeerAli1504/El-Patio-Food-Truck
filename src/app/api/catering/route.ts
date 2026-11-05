@@ -1,7 +1,9 @@
 import { NextResponse } from "next/server";
-import { parseCatering, cateringText, cateringSubject } from "@/lib/catering";
+import { parseCatering, cateringText, cateringSubject, type CateringRequest } from "@/lib/catering";
+import { fromAddress, getMailer } from "@/lib/mailer";
 import { CONTACT } from "@/lib/site";
 
+export const runtime = "nodejs"; // SMTP needs the Node runtime (not Edge)
 export const dynamic = "force-dynamic";
 
 /* best-effort per-instance rate limit: 5 requests / 10 min per IP */
@@ -17,12 +19,29 @@ function limited(ip: string) {
 const esc = (s: string) =>
   s.replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]!);
 
+function ownerHtml(d: CateringRequest) {
+  const row = (k: string, v: string) =>
+    `<tr><td style="padding:6px 14px 6px 0;color:#8a7a62;white-space:nowrap;vertical-align:top">${k}</td><td style="padding:6px 0">${esc(v || "-")}</td></tr>`;
+  return `<div style="font-family:system-ui,-apple-system,Segoe UI,sans-serif;font-size:15px;line-height:1.55;color:#1a1209">
+  <h2 style="margin:0 0 14px;font-size:20px">New catering request</h2>
+  <table style="border-collapse:collapse">
+    ${row("Name", d.name)}${row("Phone", d.phone)}${row("Email", d.email)}${row("Event date", d.date)}${row("Guests", d.guests)}${row("Event type", d.type)}
+  </table>
+  ${d.message ? `<p style="margin:16px 0 0;white-space:pre-wrap">${esc(d.message)}</p>` : ""}
+  <p style="margin:20px 0 0;color:#8a7a62;font-size:13px">Hit <b>Reply</b> to answer ${esc(d.name)} directly.</p>
+</div>`;
+}
+
+function guestText(d: CateringRequest) {
+  return `Hi ${d.name},\n\nGracias for reaching out to El Patio Street Eats! We got your catering request and will get back to you soon.\n\nHere's what you sent us:\n\n${cateringText(d)}\n\n— El Patio Street Eats · Reno, NV`;
+}
+
 /**
- * POST /api/catering — validates a catering request and emails it to the truck.
+ * POST /api/catering — validates a catering request and emails it to the truck through Gmail SMTP.
  * Responses:
- *   200 { ok: true, delivered: "email" }      sent through Resend
- *   200 { ok: true, delivered: "mailto", to } no email service configured — the
- *                                             browser opens the visitor's email app (original behaviour)
+ *   200 { ok: true, delivered: "email" }      sent through Gmail
+ *   200 { ok: true, delivered: "mailto", to } Gmail not configured / failed — the browser opens the
+ *                                             visitor's email app instead (original behaviour)
  *   400 { ok: false, errors }                 validation failed
  */
 export async function POST(req: Request) {
@@ -46,28 +65,38 @@ export async function POST(req: Request) {
   const { data, errors, ok } = parseCatering(body);
   if (!ok) return NextResponse.json({ ok: false, errors }, { status: 400 });
 
-  const to = process.env.CATERING_TO_EMAIL || CONTACT.email;
-  const key = process.env.RESEND_API_KEY;
-  if (!key) return NextResponse.json({ ok: true, delivered: "mailto", to });
+  // where requests land: CATERING_TO_EMAIL, else the Gmail account itself, else the public contact address
+  const to = process.env.CATERING_TO_EMAIL || process.env.GMAIL_USER || CONTACT.email;
+  const mailer = getMailer();
+  if (!mailer) return NextResponse.json({ ok: true, delivered: "mailto", to });
 
-  const text = cateringText(data);
-  const res = await fetch("https://api.resend.com/emails", {
-    method: "POST",
-    headers: { Authorization: `Bearer ${key}`, "Content-Type": "application/json" },
-    body: JSON.stringify({
-      from: process.env.CATERING_FROM_EMAIL || "El Patio Website <onboarding@resend.dev>",
-      to: [to],
-      reply_to: data.email,
+  try {
+    await mailer.sendMail({
+      from: fromAddress(),
+      to,
+      replyTo: `"${data.name.replace(/"/g, "")}" <${data.email}>`,
       subject: cateringSubject(data),
-      text,
-      html: `<div style="font-family:system-ui,sans-serif;font-size:15px;line-height:1.6"><h2 style="margin:0 0 12px">New catering request</h2><pre style="font-family:inherit;white-space:pre-wrap;margin:0">${esc(text)}</pre></div>`,
-    }),
-  }).catch(() => null);
-
-  if (!res || !res.ok) {
-    // email service down — still let the guest reach the truck through their own email app
-    console.error("Catering email failed", res?.status, await res?.text().catch(() => ""));
+      text: cateringText(data),
+      html: ownerHtml(data),
+    });
+  } catch (err) {
+    console.error("Catering email failed:", err);
+    // Gmail down / bad app password — still let the guest reach the truck through their own email app
     return NextResponse.json({ ok: true, delivered: "mailto", to });
   }
+
+  // optional "we got it" copy to the guest (on unless CATERING_SEND_CONFIRMATION=false)
+  if (process.env.CATERING_SEND_CONFIRMATION !== "false") {
+    await mailer
+      .sendMail({
+        from: fromAddress("El Patio Street Eats"),
+        to: data.email,
+        replyTo: to,
+        subject: "We got your catering request — El Patio Street Eats",
+        text: guestText(data),
+      })
+      .catch((err) => console.error("Guest confirmation failed:", err));
+  }
+
   return NextResponse.json({ ok: true, delivered: "email" });
 }
