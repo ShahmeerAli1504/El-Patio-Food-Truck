@@ -31,9 +31,14 @@ Deploy on **Vercel**: import the repo and it detects Next.js automatically. Add 
 | `GET /api/menu` | Full menu, best sellers and the ordering link |
 | `GET /api/schedule` | Upcoming stops with live status, computed in Reno time |
 | `POST /api/cart` | Reprices a saved cart against the live menu: drops removed items, fixes stale prices, returns the subtotal |
-| `POST /api/catering` | Validates the catering form and emails it to the truck through [Resend](https://resend.com). Includes a honeypot and a rate limit. |
+| `POST /api/catering` | Validates the catering form and emails it to the truck's Gmail through **Gmail SMTP** (Nodemailer), with Reply going straight to the customer. Can also email the customer a confirmation. Includes a honeypot and a rate limit. |
 
-**Catering email:** set `RESEND_API_KEY` to have requests emailed straight to `CATERING_TO_EMAIL`. Without a key, the form works like the old site and opens the visitor's email app with the details filled in.
+**Catering email (Gmail SMTP):**
+1. On the Gmail account, turn on 2-Step Verification (Google Account → Security).
+2. Create an **App Password** (Google Account → Security → App passwords) and copy the 16-character code.
+3. Set `GMAIL_USER`, `GMAIL_APP_PASSWORD` and optionally `CATERING_TO_EMAIL` in `.env.local` and in Vercel.
+
+Requests are sent from `GMAIL_USER` to `CATERING_TO_EMAIL`. Hitting Reply in Gmail answers the customer directly. With `CATERING_SEND_CONFIRMATION=true`, the customer also gets a "we got your request" email. If the app password is missing or Gmail rejects it, the form falls back to opening the visitor's email app, so no request is lost.
 
 **Cart:** the cart is saved in the browser and checkout goes to the link in `ORDER_URL` (DoorDash for now). To take orders directly later (for example Square with pickup at the truck), add the payment step to `/api/cart`.
 

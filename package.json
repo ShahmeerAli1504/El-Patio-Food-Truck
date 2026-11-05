@@ -2,7 +2,7 @@
   "name": "el-patio-food-truck",
   "version": "2.0.0",
   "private": true,
-  "description": "El Patio Street Eats \u2014 food truck & cantina website (Next.js + Tailwind). Built by Nexora Digital.",
+  "description": "El Patio Street Eats — food truck & cantina website (Next.js + Tailwind). Built by Nexora Digital.",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -11,12 +11,14 @@
   },
   "dependencies": {
     "next": "^15.5.4",
+    "nodemailer": "^6.10.1",
     "react": "^19.1.1",
     "react-dom": "^19.1.1"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4.1.13",
     "@types/node": "^22.18.0",
+    "@types/nodemailer": "^6.4.17",
     "@types/react": "^19.1.13",
     "@types/react-dom": "^19.1.9",
     "postcss": "^8.5.6",
