@@ -1,0 +1,130 @@
+@import "tailwindcss";
+@config "../../tailwind.config.ts";
+
+/* =========================================================
+   El Patio Street Eats — base + shared component classes
+   (layout and one-off styling live as Tailwind utilities in the components)
+   ========================================================= */
+
+@layer base {
+  html { scroll-behavior: smooth; scroll-padding-top: 84px; overflow-x: clip; }
+  body {
+    @apply bg-ink text-cream font-sans antialiased;
+    font-size: 17px;
+    line-height: 1.65;
+    overflow-x: clip;
+  }
+  @media (max-width: 600px) { body { font-size: 16px; } }
+
+  /* subtle grain like the textured logo */
+  body::before {
+    content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 100; opacity: .06;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  img, video { display: block; max-width: 100%; }
+  button { cursor: pointer; font: inherit; color: inherit; }
+  ::-webkit-calendar-picker-indicator { filter: invert(.85); }
+}
+
+@layer components {
+  .container-x { width: min(1200px, 100% - 40px); margin-inline: auto; }
+  @media (max-width: 600px) { .container-x { width: calc(100% - 32px); } }
+
+  .section { @apply relative py-[120px] max-md:py-[90px]; }
+
+  /* ---- type ---- */
+  .eyebrow {
+    @apply font-caps font-semibold text-[13px] uppercase text-terra mb-[18px] inline-flex items-center gap-3;
+    letter-spacing: .32em;
+  }
+  .eyebrow::before { content: ""; width: 28px; height: 1px; background: currentColor; }
+  .section-head .eyebrow::after { content: ""; width: 28px; height: 1px; background: currentColor; }
+  .h2 {
+    @apply font-serif font-bold mb-6;
+    font-size: clamp(38px, 5vw, 64px); line-height: 1.05; letter-spacing: -.01em;
+  }
+  .h2 em, .hero-title em { @apply italic font-medium text-teal-bright; }
+  .section-head { @apply text-center max-w-[680px] mx-auto mb-14; }
+  .section-head__sub { @apply text-cream-dim m-0; }
+
+  /* ---- buttons ---- */
+  .btn {
+    @apply inline-flex items-center justify-center gap-2.5 font-caps font-bold text-sm uppercase rounded-full border border-transparent;
+    letter-spacing: .18em; padding: 17px 30px 15px;
+    transition: transform .35s cubic-bezier(.2,.7,.2,1), background .35s, color .35s, box-shadow .35s, border-color .35s;
+  }
+  .btn--gold { @apply bg-gold text-[#1a1209]; box-shadow: 0 10px 30px -10px rgba(234,178,90,.6); }
+  .btn--gold:hover { @apply bg-gold-light -translate-y-0.5; box-shadow: 0 16px 40px -12px rgba(234,178,90,.8); }
+  .btn--ghost { @apply text-cream; border-color: rgba(242,228,203,.35); }
+  .btn--ghost:hover { @apply border-teal-bright text-teal-bright -translate-y-0.5; }
+  .btn--sm { @apply text-xs; padding: 12px 20px 10px; }
+  .btn.disabled { @apply opacity-40 pointer-events-none; }
+
+  /* round "+" add-to-order button */
+  .add-btn {
+    @apply flex-none self-end w-11 h-11 rounded-full border border-gold bg-transparent text-gold text-[22px] leading-none grid place-items-center;
+    transition: background .3s, color .3s, transform .3s cubic-bezier(.2,.7,.2,1);
+  }
+  .add-btn:hover { @apply bg-gold text-ink rotate-90; }
+  .add-btn.added { @apply bg-teal border-teal text-white; }
+
+  /* pill tabs (menu + gallery) */
+  .tab-btn {
+    @apply bg-transparent border-0 rounded-full font-caps font-semibold text-[13px] uppercase text-cream-dim;
+    letter-spacing: .16em; padding: 11px 20px 9px; transition: background .3s, color .3s;
+  }
+  .tab-btn:hover { @apply text-cream; }
+  .tab-btn.active { @apply bg-cream text-ink; }
+  @media (max-width: 600px) { .tab-btn { padding: 10px 14px 8px; font-size: 12px; white-space: nowrap; flex: none; } }
+
+  .caps-xs { @apply font-caps text-[11px] uppercase; letter-spacing: .18em; }
+  .dots { @apply flex-1 min-w-5 -translate-y-[5px]; border-bottom: 1px dotted rgba(242,228,203,.3); }
+
+  /* ---- form ---- */
+  .field-label { @apply grid gap-[7px] font-caps text-[11px] uppercase text-cream-dim; letter-spacing: .2em; }
+  .field {
+    @apply w-full text-base normal-case tracking-normal text-cream rounded-xl border border-line outline-none font-sans;
+    background: rgba(255,255,255,.03); padding: 13px 15px; transition: border-color .3s, background .3s;
+  }
+  .field:focus { @apply border-teal; background: rgba(63,154,161,.06); }
+  .field.invalid { border-color: #e2674a; }
+  select.field option { @apply bg-char; }
+
+  /* ---- string lights ---- */
+  .lights { @apply absolute top-0 left-0 w-full pointer-events-none z-[2] overflow-visible; height: 140px; }
+  .lights path { fill: none; stroke: #2a241d; stroke-width: 1.4; }
+  .bulb {
+    fill: #ffd38a; animation: twinkle 4s ease-in-out infinite;
+    filter: drop-shadow(0 0 6px rgba(255,196,102,.95)) drop-shadow(0 0 16px rgba(255,170,60,.55));
+  }
+
+  /* ---- reveal on scroll ---- */
+  .reveal { opacity: 0; transform: translateY(26px); transition: opacity 1s cubic-bezier(.2,.7,.2,1), transform 1s cubic-bezier(.2,.7,.2,1); }
+  .reveal.in { opacity: 1; transform: none; }
+  @media (min-width: 1081px) {
+    .reel-offset, .reel-offset.reveal.in { transform: translateY(40px); }
+  }
+
+  /* hero shade */
+  .hero-shade {
+    background:
+      radial-gradient(ellipse at 75% 50%, transparent 0%, rgba(11,10,9,.55) 60%),
+      linear-gradient(90deg, rgba(11,10,9,.96) 0%, rgba(11,10,9,.82) 38%, rgba(11,10,9,.35) 70%, rgba(11,10,9,.6) 100%),
+      linear-gradient(0deg, #0b0a09 0%, transparent 30%);
+  }
+
+  /* terracotta stamp badge (hero + best-seller ranks) */
+  .stamp {
+    @apply bg-terra text-bone rounded-full;
+    border: 2px dashed rgba(255,243,226,.45); outline: 6px solid #c65b33;
+    box-shadow: 0 20px 40px -12px rgba(0,0,0,.7);
+  }
+
+  .no-scrollbar { scrollbar-width: none; }
+  .no-scrollbar::-webkit-scrollbar { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+  .reveal { opacity: 1; transform: none; }
+}
