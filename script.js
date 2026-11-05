@@ -3,7 +3,9 @@
    ========================================================= */
 
 /* ---- CONFIG: change these in one place ---- */
-const ORDER_URL = "https://www.elpatioreno.com/s/order"; // swap for the new ordering link when ready
+// For now all ordering goes to DoorDash. When the client moves to Square online ordering
+// for truck pickup, swap this one link (and the button text in index.html).
+const ORDER_URL = "https://www.doordash.com/store/el-patio-food-truck-reno-51259023/";
 
 /* ---- Weekly schedule (edit each week) ---- */
 const SCHEDULE = [
@@ -358,6 +360,7 @@ function setupForm() {
 document.addEventListener("DOMContentLoaded", () => {
   $("#year").textContent = new Date().getFullYear();
   $("#checkoutBtn").href = ORDER_URL;
+  document.querySelectorAll("[data-order]").forEach((a) => { a.href = ORDER_URL; a.target = "_blank"; a.rel = "noopener"; });
   renderMenu();
   renderGallery();
   renderCart();
