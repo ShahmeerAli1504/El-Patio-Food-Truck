@@ -95,7 +95,7 @@ export async function POST(req: Request) {
         subject: "We got your catering request — El Patio Street Eats",
         text: guestText(data),
       })
-      .catch((err) => console.error("Guest confirmation failed:", err));
+      .catch((err: unknown) => console.error("Guest confirmation failed:", err));
   }
 
   return NextResponse.json({ ok: true, delivered: "email" });

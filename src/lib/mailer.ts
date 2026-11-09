@@ -1,11 +1,11 @@
-import nodemailer from "nodemailer";
+import nodemailer, { type Transporter } from "nodemailer";
 
 /**
  * Gmail SMTP mailer.
  * Needs GMAIL_USER (the Gmail address) and GMAIL_APP_PASSWORD (a 16-character Google App Password,
  * NOT the normal Gmail password — Google Account → Security → 2-Step Verification → App passwords).
  */
-let transporter: nodemailer.Transporter | null = null;
+let transporter: Transporter | null = null;
 
 export const mailerConfigured = () => Boolean(process.env.GMAIL_USER && process.env.GMAIL_APP_PASSWORD);
 
